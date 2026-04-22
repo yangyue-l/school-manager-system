@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hebau</groupId>
-	<artifactId>school_manager_system1</artifactId>
+	<artifactId>school_managerment_system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>school_manager_system1</name>
+	<name>school_managerment_system</name>
 	<description/>
 	<url/>
 	<licenses>
