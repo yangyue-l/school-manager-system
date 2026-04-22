@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hebau.pojo.Dept;
 import com.hebau.pojo.Result;
 import com.hebau.service.DeptService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequestMapping("/depts")
 @RestController
 public class DeptController {
 
@@ -24,40 +29,41 @@ public class DeptController {
 
     // @RequestMapping(value = "/depts",method = RequestMethod.GET)
     //查询全部部门
-    @GetMapping("/depts")
+    @GetMapping
     public Result list(){
-        System.out.println("查询全部部门");
+        log.info("查询全部部门数据");
         List<Dept> deptlist = deptService.findAll();
         return Result.success(deptlist);
     }
 
     //删除部门
-    @DeleteMapping("/depts")
+    @DeleteMapping
     public Result delete(Integer id){
-        System.out.println("根据部门删除" + id);
+        log.info("根据id删除部门:{}" , id);
         deptService.deleteByName(id);
         return Result.success();
     }
 
     //新增部门
-    @PostMapping("/depts")
+    @PostMapping
     public Result add(@RequestBody Dept dept){
-        System.out.println("新增部门:"+dept);
+        log.info("新增部门:{}",dept);
         deptService.add(dept);
         return Result.success();
     }
 
     //根据Id查询部门
-    @GetMapping("/depts/{id}")
+    @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id){
-        System.out.println("根据Id查询部门"+id);
+        log.info("根据Id查询部门:{}",id);
         Dept dept = deptService.getById(id);
         return Result.success(dept);
     }
 
     //修改部门基本信息
-    @PutMapping("/depts")
-    public Result update(Dept dept){
+    @PutMapping
+    public Result update(@RequestBody Dept dept){
+        log.info("修改部门:{}",dept);
         deptService.update(dept);
         return Result.success();
     }
