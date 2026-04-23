@@ -25,6 +25,16 @@ public interface EmpMapper {
     void insert(Emp emp);
 
 
+    void deleteByIds(List<Integer> ids);
+
+    void deleteByEmpIds(List<Integer> ids);
+
+    Emp getById(Integer id);
+
+    //根据id更新员工的基本信息
+    void updateById(Emp emp);
+
+
 
 
 }

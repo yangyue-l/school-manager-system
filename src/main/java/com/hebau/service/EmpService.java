@@ -4,6 +4,8 @@ package com.hebau.service;
 
 
 
+import java.util.List;
+
 import com.hebau.pojo.Emp;
 import com.hebau.pojo.EmpQueryParam;
 import com.hebau.pojo.PageResult;
@@ -16,5 +18,11 @@ public interface EmpService {
     //
     void save(Emp emp);
 
+    void delete(List<Integer> ids);
 
+    Emp getInfo(Integer id);
+
+    void update(Emp emp);
+
+    
 }

@@ -15,4 +15,11 @@ public interface EmpExprMapper {
     
     void insertBatch(List<EmpExpr> exprList);
 
+    //根据员工Id批量删除员工
+    void deleteByEmpIds(List<Integer> empIds);
+
+
+
+
+
 }
