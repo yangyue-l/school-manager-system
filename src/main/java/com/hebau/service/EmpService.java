@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.hebau.pojo.Emp;
 import com.hebau.pojo.EmpQueryParam;
+import com.hebau.pojo.LoginInfo;
 import com.hebau.pojo.PageResult;
 
 public interface EmpService {
@@ -24,5 +25,8 @@ public interface EmpService {
 
     void update(Emp emp);
 
-    
+    //员工登录
+    LoginInfo Login(Emp emp);
+
+
 }

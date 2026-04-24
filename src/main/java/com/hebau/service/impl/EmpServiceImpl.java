@@ -16,10 +16,14 @@ import com.hebau.pojo.Emp;
 import com.hebau.pojo.EmpExpr;
 import com.hebau.pojo.EmpLog;
 import com.hebau.pojo.EmpQueryParam;
+import com.hebau.pojo.LoginInfo;
 import com.hebau.pojo.PageResult;
 import com.hebau.service.EmpLogService;
 import com.hebau.service.EmpService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class EmpServiceImpl implements EmpService{
 
@@ -105,6 +109,19 @@ public class EmpServiceImpl implements EmpService{
             empExprMapper.insertBatch(exprList);
         }
 
+    }
+
+
+
+    @Override
+    public LoginInfo Login(Emp emp) {
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+
+        if(e!=null){
+            log.info("登录成功,员工信息:{}",emp);
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+        }
+        return null;
     }
 
 
