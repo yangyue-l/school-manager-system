@@ -3,7 +3,9 @@ package com.hebau.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import com.hebau.pojo.LoginInfo;
 import com.hebau.pojo.PageResult;
 import com.hebau.service.EmpLogService;
 import com.hebau.service.EmpService;
+import com.hebau.utils.JwtUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -118,8 +121,15 @@ public class EmpServiceImpl implements EmpService{
         Emp e = empMapper.selectByUsernameAndPassword(emp);
 
         if(e!=null){
+            //生成Jwt令牌
+            Map<String,Object> claims = new HashMap<>();
+            claims.put("id",e.getId());
+            claims.put("username",e.getUsername());
+            String jwt = JwtUtils.generateJwt(claims);
+
+
             log.info("登录成功,员工信息:{}",emp);
-            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),jwt); 
         }
         return null;
     }
