@@ -1,8 +1,10 @@
 package com.hebau.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
@@ -34,6 +36,11 @@ public interface EmpMapper {
     //根据id更新员工的基本信息
     void updateById(Emp emp);
 
+    //统计员工职位人数
+  
+    List<Map<String,Object>> countEmpJobData();
+
+    List<Map<String, Object>> countEmpGenderData();
 
 
 
